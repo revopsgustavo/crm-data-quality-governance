@@ -109,3 +109,7 @@ CRM Data Quality and Revenue Governance case for RevOps and Sales Ops, using syn
 
 ## Suggested Topics
 revops, sales-ops, crm, crm-data-quality, data-quality, revenue-governance, forecast-reliability, pipeline-hygiene, salesforce, hubspot, streamlit, python, data-analytics, saas, b2b, portfolio-project
+
+## Contact
+LinkedIn: https://www.linkedin.com/in/gustavo-worliczek-lazzarotto/  
+E-mail: gustavo.lazzaro77o@gmail.com
