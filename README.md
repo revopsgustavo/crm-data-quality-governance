@@ -32,6 +32,16 @@ src/              geração, métricas, gaps, IA e validação
 tests/            testes automatizados
 ```
 
+## Dashboard Preview
+O dashboard Streamlit fica em `app/streamlit_app.py` e cobre CRM Data Quality, Revenue Governance, Forecast Reliability e Pipeline Hygiene com dados sinteticos.
+
+![Executive view](docs/screenshots/executive-view.png)
+
+Screenshots adicionais:
+- [Diagnostic view](docs/screenshots/diagnostic-view.png)
+- [Gap consultant](docs/screenshots/gap-consultant.png)
+- [Decision view](docs/screenshots/decision-view.png)
+
 ## Dados Sintéticos
 Entidades: leads, accounts, contacts, opportunities, users, activities, forecast_categories, stages, crm_audit_log, data_quality_checks e remediation_tasks. Não há dados reais, APIs externas ou ML.
 
