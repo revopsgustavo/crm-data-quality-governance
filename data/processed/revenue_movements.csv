@@ -1,0 +1,10 @@
+movement_id,customer_id,movement_date,movement_type,mrr_amount,reason,source
+mov_001,cus_003,2026-06-01,churn,54000.0,lost_value,synthetic
+mov_002,cus_027,2026-06-02,churn,3300.0,lost_logo,synthetic
+mov_003,cus_031,2026-06-03,churn,3000.0,lost_logo,synthetic
+mov_004,cus_008,2026-06-04,contraction,9000.0,downgrade,synthetic
+mov_005,cus_014,2026-06-05,contraction,7000.0,seat_reduction,synthetic
+mov_006,cus_002,2026-06-06,expansion,36000.0,new_module,synthetic
+mov_007,cus_007,2026-06-07,expansion,26000.0,seat_growth,synthetic
+mov_008,cus_016,2026-06-08,expansion,22000.0,new_workspace,synthetic
+mov_009,cus_022,2026-06-09,expansion,15000.0,usage_growth,synthetic

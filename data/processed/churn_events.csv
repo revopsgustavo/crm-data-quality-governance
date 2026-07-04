@@ -1,0 +1,4 @@
+churn_event_id,customer_id,churn_date,churn_mrr,churn_reason,save_playbook_used
+chr_001,cus_003,2026-06-01,54000.0,not_validated,False
+chr_002,cus_027,2026-06-02,3300.0,not_validated,True
+chr_003,cus_031,2026-06-03,3000.0,not_validated,False

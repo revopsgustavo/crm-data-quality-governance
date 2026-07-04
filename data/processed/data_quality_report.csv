@@ -1,0 +1,56 @@
+table,check_name,status,details
+leads,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\leads.csv
+leads,column_exists:lead_id,pass,lead_id
+leads,id_not_null:lead_id,pass,missing=0
+leads,column_exists:source,pass,source
+accounts,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\accounts.csv
+accounts,column_exists:account_id,pass,account_id
+accounts,id_not_null:account_id,pass,missing=0
+accounts,column_exists:owner_id,pass,owner_id
+accounts,id_not_null:owner_id,fail,missing=4
+contacts,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\contacts.csv
+contacts,column_exists:contact_id,pass,contact_id
+contacts,id_not_null:contact_id,pass,missing=0
+contacts,column_exists:account_id,pass,account_id
+contacts,id_not_null:account_id,fail,missing=4
+opportunities,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\opportunities.csv
+opportunities,column_exists:opportunity_id,pass,opportunity_id
+opportunities,id_not_null:opportunity_id,pass,missing=0
+opportunities,column_exists:account_id,pass,account_id
+opportunities,id_not_null:account_id,pass,missing=0
+opportunities,column_exists:owner_id,pass,owner_id
+opportunities,id_not_null:owner_id,fail,missing=4
+opportunities,column_exists:amount,pass,amount
+opportunities,column_exists:close_date,pass,close_date
+opportunities,column_exists:stage,pass,stage
+opportunities,column_exists:forecast_category,pass,forecast_category
+opportunities,column_exists:probability,pass,probability
+users,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\users.csv
+users,column_exists:user_id,pass,user_id
+users,id_not_null:user_id,pass,missing=0
+activities,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\activities.csv
+activities,column_exists:activity_id,pass,activity_id
+activities,id_not_null:activity_id,pass,missing=0
+activities,column_exists:related_object_id,pass,related_object_id
+activities,id_not_null:related_object_id,pass,missing=0
+forecast_categories,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\forecast_categories.csv
+forecast_categories,column_exists:forecast_category,pass,forecast_category
+stages,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\stages.csv
+stages,column_exists:stage,pass,stage
+crm_audit_log,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\crm_audit_log.csv
+crm_audit_log,column_exists:event_id,pass,event_id
+crm_audit_log,id_not_null:event_id,pass,missing=0
+data_quality_checks,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\data_quality_checks.csv
+data_quality_checks,column_exists:check_id,pass,check_id
+data_quality_checks,id_not_null:check_id,pass,missing=0
+remediation_tasks,file_exists,pass,C:\Users\Gustavo Lazzaroto\Documents\Playground\data\processed\remediation_tasks.csv
+remediation_tasks,column_exists:task_id,pass,task_id
+remediation_tasks,id_not_null:task_id,pass,missing=0
+opportunities,amount_non_negative,pass,amount >= 0
+opportunities,probability_between_0_and_1,pass,probability scale 0-1
+opportunities,valid_stages,pass,
+opportunities,valid_forecast_categories,pass,
+accounts,valid_owner_id,pass,
+opportunities,valid_owner_id,pass,
+contacts,valid_account_id,pass,
+opportunities,valid_account_id,pass,

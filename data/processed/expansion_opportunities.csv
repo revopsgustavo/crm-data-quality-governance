@@ -1,0 +1,5 @@
+opportunity_id,customer_id,created_date,expansion_type,estimated_expansion_mrr,stage,probability,next_step,owner
+exp_001,cus_002,2026-06-10,new_module,36000.0,qualified,0.55,2026-07-10,csm_001
+exp_002,cus_007,2026-06-11,seat_growth,26000.0,qualified,0.55,,csm_001
+exp_003,cus_016,2026-06-12,usage_growth,22000.0,discovery,0.3,2026-07-15,csm_003
+exp_004,cus_022,2026-06-13,new_workspace,15000.0,identified,0.15,,csm_003
