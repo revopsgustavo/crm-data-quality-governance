@@ -1,29 +1,29 @@
 # Análise Executiva
 
 ## Veredito executivo
-Os dados sugerem que o CRM ainda não está plenamente confiável para decisões executivas sem saneamento prévio. O score geral de qualidade está em 64.0/100, o Forecast Reliability Score está em 68.8/100 e o Pipeline Hygiene Score está em 46.1/100. A evidência disponível aponta para R$ 1.543.800,00 em pipeline associado a problemas de qualidade de dados.
+Os dados sugerem que o CRM ainda não está plenamente confiável para decisões executivas sem saneamento prévio. O score geral de qualidade está em 65.5/100, o Forecast Reliability Score está em 76.0/100 e o Pipeline Hygiene Score está em 42.8/100. A evidência disponível aponta para R$ 2.414.735,00 em pipeline associado a problemas de qualidade de dados.
 
 ## Diagnóstico do período
 O risco principal não está apenas na existência de campos incompletos, mas no impacto desses problemas sobre forecast, pipeline hygiene, ownership e confiabilidade da tomada de decisão. CRM Data Quality deve ser tratada como governança de receita, não como checklist técnico.
 
 ## Resumo de métricas
 - Leads sem source: 13.
-- Duplicidade de leads: 5 registros envolvidos.
+- Duplicidade de leads: 3 registros envolvidos.
 - Duplicidade de contas: 4 registros envolvidos.
 - Contatos sem conta: 4.
 - Contas sem owner: 4.
 - Oportunidades sem owner: 4.
 - Oportunidades sem close_date: 5.
 - Oportunidades sem next_step: 5.
-- Oportunidades paradas: 34.
-- Estágio avançado sem atividade recente: 6.
+- Oportunidades paradas: 37.
+- Estágio avançado sem atividade recente: 12.
 - Closed Won sem amount: 2.
-- Closed Lost sem loss_reason: 3.
+- Closed Lost sem loss_reason: 9.
 - Amount zerado em oportunidade: 6.
-- Oportunidades abertas com close_date no passado: 4.
-- Forecast category inconsistente: 3.
+- Oportunidades abertas com close_date no passado: 1.
+- Forecast category inconsistente: 0.
 - Stage/probability incompatível: 14.
-- Mudanças manuais de close_date: 50,6%.
+- Mudanças manuais de close_date: 49,3%.
 - Tarefas de remediação atrasadas: 3.
 
 ## Principais achados

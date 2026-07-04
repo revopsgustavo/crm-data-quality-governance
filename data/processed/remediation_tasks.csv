@@ -2,5 +2,4 @@ task_id,task_name,owner_id,severity,due_date,status
 tsk_001,lead_source_cleanup,usr_006,high,2026-06-30,in_progress
 tsk_002,account_owner_backfill,usr_005,critical,2026-07-02,open
 tsk_003,forecast_category_review,usr_004,critical,2026-07-07,open
-tsk_004,closed_lost_reason_policy,usr_005,high,2026-06-27,open
-tsk_005,duplicate_account_merge,usr_005,medium,2026-07-14,completed
+tsk_004,close_date_push_reason_code,usr_004,high,2026-07-03,open

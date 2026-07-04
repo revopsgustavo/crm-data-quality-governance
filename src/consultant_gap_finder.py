@@ -4,12 +4,16 @@ from pathlib import Path
 
 import pandas as pd
 
+try:
+    from src import metrics
+except ModuleNotFoundError:  # pragma: no cover
+    import metrics
+
 ROOT = Path(__file__).resolve().parents[1]
-PROCESSED = ROOT / "data" / "processed"
-OUTPUT = PROCESSED / "consultant_gap_log.csv"
+OUTPUT = ROOT / "data" / "processed" / "consultant_gap_log.csv"
 
 
-def _gap(gap_id: str, area: str, metric: str, actual: object, expected: object, severity: str, evidence: str, action: str, owner: str, follow_up: str) -> dict[str, object]:
+def gap(gap_id: str, area: str, metric: str, actual, expected: str, severity: str, evidence: str, action: str, owner: str, follow: str) -> dict:
     return {
         "gap_id": gap_id,
         "area": area,
@@ -18,76 +22,45 @@ def _gap(gap_id: str, area: str, metric: str, actual: object, expected: object, 
         "expected_value": expected,
         "severity": severity,
         "evidence": evidence,
-        "probable_cause": "Hipotese provavel: a combinacao de mix de canal, qualidade de demanda, regras de atribuicao e disciplina de budget precisa ser validada antes de confirmar causa raiz.",
-        "missing_evidence": "Historico real de budget, criterios de MQL/SQL, origem de contratos, pesos de atribuicao, margem por segmento e retencao por coorte.",
-        "validation_questions": "O desvio observado vem de qualidade de demanda, tracking incompleto, janela de atribuicao, ciclo de vendas, mix de segmento ou governanca de investimento?",
+        "probable_cause": "Hipótese provável: os dados sugerem fragilidade de regra, processo ou accountability operacional; precisa ser validado antes de confirmar causa raiz.",
+        "missing_evidence": "Regras reais do CRM, exceções aprovadas, notas comerciais, motivo de alteração, critérios de forecast e validação dos managers.",
+        "validation_questions": "O comportamento observado vem de regra de sistema, disciplina operacional, mix de carteira, exceção aprovada ou ausência de governança?",
         "recommended_action": action,
         "owner": owner,
         "urgency": "immediate" if severity == "critical" else "this_week" if severity == "high" else "this_month",
-        "expected_impact": "Melhorar alocacao de budget, confiabilidade de atribuicao, CAC Payback, LTV/CAC e decisao executiva de crescimento.",
-        "follow_up_metric": follow_up,
+        "expected_impact": "Melhorar forecast, pipeline hygiene, produtividade comercial, governança e qualidade da decisão executiva.",
+        "follow_up_metric": follow,
         "status": "open",
     }
 
 
-def find_gaps() -> pd.DataFrame:
-    channels = pd.read_csv(PROCESSED / "channels.csv")
-    leads = pd.read_csv(PROCESSED / "leads.csv")
-    opportunities = pd.read_csv(PROCESSED / "opportunities.csv")
-    customers = pd.read_csv(PROCESSED / "customers.csv")
-    revenue = pd.read_csv(PROCESSED / "revenue.csv")
-    spend = pd.read_csv(PROCESSED / "marketing_spend.csv")
-    attribution = pd.read_csv(PROCESSED / "attribution_models.csv")
-
-    channel = channels[["channel_id", "channel_name", "channel_type"]].merge(
-        spend.groupby("channel_id", as_index=False).agg(spend=("spend_amount", "sum")),
-        on="channel_id",
-        how="left",
-    )
-    channel = channel.merge(leads.groupby("channel_id", as_index=False).agg(leads=("lead_id", "nunique"), icp_rate=("is_icp", "mean")), on="channel_id", how="left")
-    channel = channel.merge(opportunities.groupby("channel_id", as_index=False).agg(opportunities=("opportunity_id", "nunique")), on="channel_id", how="left")
-    channel = channel.merge(
-        customers.groupby("acquisition_channel_id", as_index=False).agg(customers=("customer_id", "nunique"), retention_90d=("retained_90d", "mean")).rename(columns={"acquisition_channel_id": "channel_id"}),
-        on="channel_id",
-        how="left",
-    )
-    channel = channel.merge(revenue.groupby("channel_id", as_index=False).agg(new_arr=("new_arr", "sum")), on="channel_id", how="left").fillna(0)
-    channel["cac"] = channel["spend"] / channel["customers"].replace(0, pd.NA)
-    channel["payback"] = channel["spend"] / ((channel["new_arr"] * 0.75) / 12).replace(0, pd.NA)
-    channel["lead_to_customer"] = channel["customers"] / channel["leads"].replace(0, pd.NA)
-
-    gaps: list[dict[str, object]] = []
-    paid_social = channel.loc[channel["channel_name"].eq("Paid Social")].iloc[0]
-    events = channel.loc[channel["channel_name"].eq("Events")].iloc[0]
-    referral = channel.loc[channel["channel_name"].eq("Referral")].iloc[0]
-    paid_search = channel.loc[channel["channel_name"].eq("Paid Search")].iloc[0]
-
-    if paid_social["payback"] > 18:
-        gaps.append(_gap("gap_paid_social_payback", "channel_efficiency", "cac_payback_months", round(float(paid_social["payback"]), 1), "<= 12", "critical", "Paid Social concentra volume de leads, mas apresenta payback acima do limite executivo.", "Reduzir budget de lead ads amplos e manter apenas retargeting com prova de produto.", "Marketing Ops", "cac_payback_months"))
-    if events["spend"] > referral["spend"] * 4 and events["lead_to_customer"] < referral["lead_to_customer"]:
-        gaps.append(_gap("gap_events_budget_efficiency", "budget_allocation", "event_efficiency_vs_referral", round(float(events["lead_to_customer"]), 3), f">= {referral['lead_to_customer']:.3f}", "high", "Events recebe investimento materialmente maior, mas converte menos que Referral.", "Migrar parte do budget de eventos para referral e partner motions com accountability por ARR.", "Head of Marketing", "arr_per_spend"))
-    if paid_search["cac"] > referral["cac"] * 2:
-        gaps.append(_gap("gap_paid_search_cac", "channel_efficiency", "cac", round(float(paid_search["cac"]), 2), f"<= {referral['cac'] * 1.5:.2f}", "high", "Paid Search gera captura de demanda, mas CAC fica muito acima de canais orgânicos e referral.", "Separar campanhas core intent de broad match e reportar CAC por subcampanha.", "Demand Generation", "cac_by_campaign"))
-
-    attr = attribution.pivot_table(index="channel_id", columns="model_name", values="attributed_revenue", aggfunc="sum").reset_index()
-    attr["delta_last_first"] = attr.get("last_touch", 0) - attr.get("first_touch", 0)
-    shifted = attr.merge(channels[["channel_id", "channel_name"]], on="channel_id")
-    shifted = shifted.loc[shifted["delta_last_first"].abs().gt(100000)]
-    if not shifted.empty:
-        gaps.append(_gap("gap_attribution_model_sensitivity", "attribution_governance", "last_vs_first_touch_delta", round(float(shifted["delta_last_first"].abs().max()), 2), "<= 100000", "critical", "A leitura de receita por canal muda de forma relevante entre first-touch e last-touch.", "Criar modelo multi-touch oficial e governar decisao de budget por mais de um modelo.", "RevOps Analytics", "model_variance"))
-
-    low_retention = channel.loc[channel["retention_90d"].lt(0.82)]
-    if not low_retention.empty:
-        gaps.append(_gap("gap_low_retention_channels", "cohort_quality", "retention_90d", round(float(low_retention["retention_90d"].min()), 3), ">= 0.82", "high", "Alguns canais trazem clientes com retencao de 90 dias abaixo do minimo esperado.", "Adicionar retencao e NRR por coorte na decisao de investimento de aquisicao.", "Revenue Operations", "retention_90d_by_channel"))
-
-    if int(leads["is_icp"].mean() * 100) < 85:
-        gaps.append(_gap("gap_icp_quality", "lead_quality", "icp_rate", round(float(leads["is_icp"].mean()), 3), ">= 0.85", "medium", "A base inclui volume relevante de leads fora de ICP.", "Revisar criterios de segmentacao e score minimo antes de MQL.", "Marketing Ops", "icp_rate"))
-
-    overall_payback = float(channel["spend"].sum() / ((channel["new_arr"].sum() * 0.75) / 12))
-    if overall_payback > 12:
-        gaps.append(_gap("gap_company_payback", "unit_economics", "company_cac_payback_months", round(overall_payback, 1), "<= 12", "critical", "O payback consolidado esta acima do limite de crescimento eficiente.", "Rebalancear investimento para canais com payback inferior a 12 meses antes de escalar spend.", "CRO", "company_cac_payback_months"))
-
-    return pd.DataFrame(gaps)
+def find_gaps(tables: dict[str, pd.DataFrame] | None = None) -> pd.DataFrame:
+    tables = tables or metrics.load_all()
+    leads, accounts, contacts = tables["leads"], tables["accounts"], tables["contacts"]
+    opportunities, activities = tables["opportunities"], tables["activities"]
+    summary = metrics.executive_summary_metrics(tables)
+    rows = []
+    if summary["crm_data_quality_score"] < 82:
+        rows.append(gap("gap_low_crm_data_quality_score", "crm_governance", "crm_data_quality_score", round(summary["crm_data_quality_score"], 1), ">= 82", "critical", f"Os dados sugerem score geral de qualidade em {summary['crm_data_quality_score']:.1f}/100.", "Criar war room de CRM hygiene com owners por objeto e foco em campos críticos.", "Head de RevOps", "crm_data_quality_score"))
+    if metrics.lead_missing_source_rate(leads) > 0.05:
+        rows.append(gap("gap_leads_without_source", "lead_governance", "lead_missing_source_rate", round(metrics.lead_missing_source_rate(leads), 3), "<= 0.05", "high", f"A evidência disponível aponta para {metrics.lead_missing_source_rate(leads):.1%} dos leads sem source.", "Bloquear criação ou roteamento de lead sem source.", "Marketing Ops", "lead_missing_source_rate"))
+    if len(metrics.duplicate_accounts(accounts)) > 0:
+        rows.append(gap("gap_duplicate_accounts", "deduplication", "duplicate_accounts", len(metrics.duplicate_accounts(accounts)), "0", "high", f"Os dados sugerem {len(metrics.duplicate_accounts(accounts))} contas duplicadas por nome e domínio.", "Consolidar contas duplicadas e criar matching por domínio.", "CRM Manager", "duplicate_account_rate"))
+    if len(metrics.contacts_without_account(contacts)) > 0:
+        rows.append(gap("gap_contacts_without_account", "relationship_integrity", "contacts_without_account", len(metrics.contacts_without_account(contacts)), "0", "medium", f"Há {len(metrics.contacts_without_account(contacts))} contatos sem conta associada.", "Associar contatos por domínio e exigir account_id.", "CRM Admin", "contacts_without_account"))
+    if len(metrics.opportunities_without_owner(opportunities)) > 0:
+        rows.append(gap("gap_opportunities_without_owner", "ownership", "opportunities_without_owner", len(metrics.opportunities_without_owner(opportunities)), "0", "critical", f"Existem {len(metrics.opportunities_without_owner(opportunities))} oportunidades sem AE owner.", "Atribuir owner antes de qualquer forecast inclusion.", "Head de Sales", "opportunities_without_owner"))
+    if len(metrics.opportunities_without_close_date(opportunities)) > 0:
+        rows.append(gap("gap_opportunities_without_close_date", "forecast_governance", "opportunities_without_close_date", len(metrics.opportunities_without_close_date(opportunities)), "0", "critical", f"Há {len(metrics.opportunities_without_close_date(opportunities))} oportunidades sem close_date.", "Bloquear forecast de oportunidades abertas sem close_date validada.", "RevOps", "opportunities_without_close_date"))
+    if len(metrics.opportunities_without_next_step(opportunities)) > 0:
+        rows.append(gap("gap_opportunities_without_next_step", "pipeline_hygiene", "opportunities_without_next_step", len(metrics.opportunities_without_next_step(opportunities)), "0", "high", f"Há {len(metrics.opportunities_without_next_step(opportunities))} oportunidades abertas sem next_step.", "Exigir next_step datado em pipeline review.", "Sales Managers", "opportunities_without_next_step"))
+    if len(metrics.stale_opportunities(opportunities)) > 0:
+        rows.append(gap("gap_stale_opportunities", "pipeline_hygiene", "stale_opportunities", len(metrics.stale_opportunities(opportunities)), "0", "high", f"Há {len(metrics.stale_opportunities(opportunities))} oportunidades paradas há mais de 20 dias.", "Criar limpeza semanal de oportunidades paradas.", "Sales Managers", "stale_opportunities"))
+    if len(metrics.forecast_category_inconsistencies(opportunities)) > 0:
+        rows.append(gap("gap_forecast_category_inconsistencies", "forecast_governance", "forecast_category_inconsistencies", len(metrics.forecast_category_inconsistencies(opportunities)), "0", "critical", f"Há {len(metrics.forecast_category_inconsistencies(opportunities))} forecast categories inconsistentes com stage.", "Criar matriz stage x forecast category.", "RevOps", "forecast_category_inconsistencies"))
+    if summary["revenue_at_risk_from_data_quality"] > 1_000_000:
+        rows.append(gap("gap_high_revenue_at_risk", "revenue_risk", "revenue_at_risk_from_data_quality", round(summary["revenue_at_risk_from_data_quality"], 2), "<= 1000000", "critical", f"Pipeline associado a problemas de qualidade soma R$ {summary['revenue_at_risk_from_data_quality']:,.0f}.", "Priorizar correção por valor em risco.", "CRO", "revenue_at_risk_from_data_quality"))
+    return pd.DataFrame(rows)
 
 
 def main() -> None:

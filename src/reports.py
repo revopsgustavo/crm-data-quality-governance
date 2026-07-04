@@ -262,11 +262,47 @@ Projeto CRM Data Quality and Revenue Governance revisado para vitrine GitHub, co
 """
 
 
+def executive_memo_text(snapshot: dict[str, object]) -> str:
+    return f"""# Executive Memo
+
+## Problem
+Os dados sugerem que o CRM ainda não deve ser tratado como fonte plenamente confiável para forecast, pipeline review e reporting executivo sem saneamento prévio.
+
+## Evidence
+- CRM Data Quality Score: {snapshot['crm_data_quality_score']:.1f}/100.
+- Forecast Reliability Score: {snapshot['forecast_reliability_score']:.1f}/100.
+- Pipeline Hygiene Score: {snapshot['pipeline_hygiene_score']:.1f}/100.
+- Oportunidades sem owner: {format_integer_br(snapshot['opportunities_without_owner'])}.
+- Oportunidades sem close_date: {format_integer_br(snapshot['opportunities_without_close_date'])}.
+- Oportunidades sem next_step: {format_integer_br(snapshot['opportunities_without_next_step'])}.
+- Receita em risco associada a problemas de qualidade: {format_currency_br(snapshot['revenue_at_risk_from_data_quality'])}.
+
+## Business Risk
+Há indícios de que pipeline e forecast podem estar sendo avaliados com registros incompletos, ownership frágil, close dates inconsistentes e hygiene insuficiente.
+
+## Recommended Decision
+Separar pipeline confiável de pipeline em saneamento, corrigir campos críticos antes da próxima forecast call e criar governança contínua de remediação.
+
+## Owner
+Head de RevOps, Sales Ops, CRM Manager, Sales Managers e CRO.
+
+## Follow-up Metric
+crm_data_quality_score, forecast_reliability_score, pipeline_hygiene_score, revenue_at_risk_from_data_quality e remediation_completion_rate.
+
+## What Is Missing
+Regras reais do CRM, validações por stage, logs completos de alteração, política de ownership, exceções aprovadas e validação dos managers.
+
+## Final Recommendation
+A evidência disponível aponta para tratar CRM Data Quality como Revenue Governance, com foco em previsibilidade, accountability e qualidade da decisão executiva.
+"""
+
+
 def main() -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
     snapshot = metric_snapshot()
     (DOCS / "executive_analysis.md").write_text(executive_analysis_text(snapshot), encoding="utf-8")
     (DOCS / "metrics_dictionary.md").write_text(metrics_dictionary_text(), encoding="utf-8")
+    (DOCS / "executive_memo.md").write_text(executive_memo_text(snapshot), encoding="utf-8")
     (DOCS / "final_handoff_report.md").write_text(final_handoff_text(), encoding="utf-8")
     (ROOT / "README.md").write_text(readme_text(snapshot), encoding="utf-8")
     print("Executive docs and README generated")

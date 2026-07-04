@@ -12,11 +12,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src import metrics
-from src.utils import format_currency_br, format_integer_br, format_percent_br, select_existing
+from src.utils import format_currency_br, format_integer_br, format_percent_br, has_columns, select_existing
 
+PROCESSED = ROOT / "data" / "processed"
 DOCS = ROOT / "docs"
 
-st.set_page_config(page_title="Revenue Attribution and CAC Payback", layout="wide")
+st.set_page_config(page_title="CRM Data Quality and Revenue Governance", layout="wide")
 
 
 @st.cache_data
@@ -24,97 +25,133 @@ def load_tables() -> dict[str, pd.DataFrame]:
     return metrics.load_all()
 
 
+def read_table(name: str) -> pd.DataFrame:
+    path = PROCESSED / f"{name}.csv"
+    return pd.read_csv(path) if path.exists() else pd.DataFrame()
+
+
 def markdown_doc(file_name: str) -> None:
     path = DOCS / file_name
-    st.markdown(path.read_text(encoding="utf-8") if path.exists() else "Documento ainda nao gerado.")
+    st.markdown(path.read_text(encoding="utf-8") if path.exists() else "Arquivo ainda nao gerado. Rode a preparacao do projeto.")
 
 
-def metric_card(column, label: str, value: str, help_text: str) -> None:
-    column.metric(label, value, help=help_text)
+def safe_table(df: pd.DataFrame, columns: list[str] | None = None) -> None:
+    if df.empty:
+        st.warning("Dados insuficientes para exibir esta tabela.")
+        return
+    st.dataframe(select_existing(df, columns) if columns else df, use_container_width=True, hide_index=True)
+
+
+def safe_bar(df: pd.DataFrame, x: str, y: str, title: str) -> None:
+    if df.empty or not has_columns(df, [x, y]):
+        st.warning("Dados insuficientes para exibir este grafico.")
+        return
+    st.plotly_chart(px.bar(df, x=x, y=y, title=title), use_container_width=True)
+
+
+def executive_reading(what: str, why: str, decision: str) -> None:
+    st.info(f"**O que estamos vendo?** {what}\n\n**Por que importa?** {why}\n\n**Qual decisao isso suporta?** {decision}")
 
 
 def overview(tables: dict[str, pd.DataFrame]) -> None:
-    st.title("Revenue Attribution and CAC Payback")
-    st.caption("Case RevOps SaaS B2B: atribuicao de receita, eficiencia de canais e decisao de CAC Payback.")
+    st.title("CRM Data Quality and Revenue Governance")
+    st.caption("Case RevOps SaaS B2B: CRM hygiene, forecast reliability, pipeline hygiene, ownership e revenue risk.")
     summary = metrics.executive_summary_metrics(tables)
     cols = st.columns(4)
-    metric_card(cols[0], "ARR novo", format_currency_br(summary["total_arr"]), "Receita anual recorrente gerada pelos clientes adquiridos.")
-    metric_card(cols[1], "CAC medio", format_currency_br(summary["cac"]), "Investimento de marketing dividido por novos clientes.")
-    metric_card(cols[2], "Payback CAC", f"{summary['cac_payback_months']:.1f} meses", "Tempo estimado para recuperar o CAC com margem bruta.")
-    metric_card(cols[3], "LTV/CAC", f"{summary['ltv_cac']:.2f}x", "Retorno unitario aproximado considerando margem e retencao.")
-
-    st.subheader("Eficiencia por canal")
-    channel = metrics.channel_summary(tables)
-    st.dataframe(
-        select_existing(
-            channel,
-            [
-                "channel_name",
-                "channel_type",
-                "spend",
-                "leads",
-                "opportunities",
-                "customers",
-                "new_arr",
-                "cac",
-                "cac_payback_months",
-                "retained_90d",
-            ],
-        ),
-        use_container_width=True,
-        hide_index=True,
+    cols[0].metric("CRM Data Quality", f"{summary['crm_data_quality_score']:.1f}/100")
+    cols[1].metric("Forecast Reliability", f"{summary['forecast_reliability_score']:.1f}/100")
+    cols[2].metric("Pipeline Hygiene", f"{summary['pipeline_hygiene_score']:.1f}/100")
+    cols[3].metric("Receita em risco", format_currency_br(summary["revenue_at_risk_from_data_quality"]))
+    executive_reading(
+        "Riscos combinados de completude, ownership, forecast governance e pipeline hygiene.",
+        "Esses sinais afetam forecast, pipeline review e reporting executivo.",
+        "Priorizar saneamento antes da proxima forecast call e separar pipeline confiavel de pipeline em correcao.",
     )
-    st.plotly_chart(px.bar(channel, x="channel_name", y="new_arr", color="channel_type", title="ARR novo por canal"), use_container_width=True)
+    safe_bar(metrics.data_quality_issues_by_object(tables), "object", "issue_count", "Issues por objeto")
 
 
-def attribution(tables: dict[str, pd.DataFrame]) -> None:
-    st.header("Attribution Models")
-    delta = metrics.attribution_delta(tables)
-    st.dataframe(delta, use_container_width=True, hide_index=True)
-    if not delta.empty:
-        melted = delta.melt(
-            id_vars=["channel_name"],
-            value_vars=["first_touch", "last_touch", "multi_touch_equal"],
-            var_name="model",
-            value_name="attributed_revenue",
-        )
-        st.plotly_chart(px.bar(melted, x="channel_name", y="attributed_revenue", color="model", barmode="group"), use_container_width=True)
+def scores(tables: dict[str, pd.DataFrame]) -> None:
+    st.title("Scores de Governanca")
+    frame = pd.DataFrame(
+        [{"dimensao": obj, "score": metrics.object_quality_score(obj, tables)} for obj in ["leads", "accounts", "contacts", "opportunities"]]
+        + [
+            {"dimensao": "forecast", "score": metrics.forecast_reliability_score(tables["opportunities"], tables["activities"])},
+            {"dimensao": "pipeline", "score": metrics.pipeline_hygiene_score(tables["opportunities"], tables["activities"])},
+        ]
+    )
+    safe_bar(frame, "dimensao", "score", "Score por dimensao")
+    safe_table(metrics.missing_required_fields(tables).query("missing_count > 0"))
 
 
-def gaps(tables: dict[str, pd.DataFrame]) -> None:
-    st.header("Consultant Gap Review")
-    gap_log = tables.get("consultant_gap_log", pd.DataFrame())
-    st.dataframe(gap_log, use_container_width=True, hide_index=True)
-    markdown_doc("ai_consultant_analysis.md")
+def lead_account_quality(tables: dict[str, pd.DataFrame]) -> None:
+    st.title("Lead, Account e Contact Quality")
+    cols = st.columns(4)
+    cols[0].metric("Leads sem source", format_percent_br(metrics.lead_missing_source_rate(tables["leads"])))
+    cols[1].metric("Leads duplicados", format_integer_br(len(metrics.duplicate_leads(tables["leads"]))))
+    cols[2].metric("Contas sem owner", format_integer_br(len(metrics.accounts_without_owner(tables["accounts"]))))
+    cols[3].metric("Contatos sem conta", format_integer_br(len(metrics.contacts_without_account(tables["contacts"]))))
+    executive_reading(
+        "Source, dedupe, ownership e relacionamento conta-contato sustentam roteamento e atribuição.",
+        "Dados frágeis no topo do funil distorcem produtividade e leitura de demanda.",
+        "Corrigir regras de criação, dedupe e owner antes de análises executivas.",
+    )
+    safe_table(metrics.duplicate_leads(tables["leads"]))
+    safe_table(metrics.accounts_without_owner(tables["accounts"]))
+    safe_table(metrics.contacts_without_account(tables["contacts"]))
 
 
-def data_quality(tables: dict[str, pd.DataFrame]) -> None:
-    st.header("Data Quality")
-    dq = tables.get("data_quality_report", pd.DataFrame())
-    failures = int((dq["status"] == "fail").sum()) if "status" in dq else 0
-    st.metric("Falhas de qualidade", format_integer_br(failures))
-    st.dataframe(dq, use_container_width=True, hide_index=True)
+def opportunity_hygiene(tables: dict[str, pd.DataFrame]) -> None:
+    st.title("Pipeline Hygiene")
+    opportunities = tables["opportunities"]
+    cols = st.columns(4)
+    cols[0].metric("Sem owner", format_integer_br(len(metrics.opportunities_without_owner(opportunities))))
+    cols[1].metric("Sem next step", format_integer_br(len(metrics.opportunities_without_next_step(opportunities))))
+    cols[2].metric("Paradas", format_integer_br(len(metrics.stale_opportunities(opportunities))))
+    cols[3].metric("Close date vencido", format_integer_br(len(metrics.open_opportunities_with_past_close_date(opportunities))))
+    executive_reading(
+        "Oportunidades sem sinais minimos de execucao podem inflar pipeline.",
+        "Deals sem owner, next step ou data valida reduzem confiabilidade do forecast.",
+        "Limpar pipeline e exigir accountability por deal.",
+    )
+    safe_table(metrics.stale_opportunities(opportunities), ["opportunity_id", "opportunity_name", "owner_id", "stage", "amount", "close_date", "next_step"])
 
 
-def docs() -> None:
-    st.header("Executive Narrative")
-    doc = st.radio("Documento", ["executive_analysis.md", "metrics_dictionary.md", "final_handoff_report.md"], horizontal=True)
-    markdown_doc(doc)
+def forecast_governance(tables: dict[str, pd.DataFrame]) -> None:
+    st.title("Forecast Governance")
+    opportunities = tables["opportunities"]
+    cols = st.columns(4)
+    cols[0].metric("Category inconsistente", format_integer_br(len(metrics.forecast_category_inconsistencies(opportunities))))
+    cols[1].metric("Stage/prob. invalido", format_integer_br(len(metrics.invalid_stage_probability_combinations(opportunities))))
+    cols[2].metric("Close date manual", format_percent_br(metrics.manual_close_date_change_rate(tables["crm_audit_log"])))
+    cols[3].metric("Forecast score", f"{metrics.forecast_reliability_score(opportunities, tables['activities']):.1f}/100")
+    safe_table(metrics.forecast_category_inconsistencies(opportunities), ["opportunity_id", "stage", "forecast_category", "probability", "amount", "owner_id"])
+
+
+def remediation(tables: dict[str, pd.DataFrame]) -> None:
+    st.title("Remediation Governance")
+    tasks = tables["remediation_tasks"]
+    st.metric("Taxa de conclusao", format_percent_br(metrics.remediation_completion_rate(tasks)))
+    safe_table(metrics.overdue_remediation_tasks(tasks))
+
+
+PAGES = {
+    "Visao Executiva": overview,
+    "Scores de Governanca": scores,
+    "Lead, Account e Contact Quality": lead_account_quality,
+    "Pipeline Hygiene": opportunity_hygiene,
+    "Forecast Governance": forecast_governance,
+    "Remediation Governance": remediation,
+    "Consultor de Gaps": lambda tables: (st.title("Consultor de Gaps"), safe_table(read_table("consultant_gap_log"))),
+    "IA Consultora": lambda tables: (st.title("IA Consultora"), markdown_doc("ai_consultant_analysis.md")),
+    "Analise Executiva": lambda tables: (st.title("Analise Executiva"), markdown_doc("executive_analysis.md")),
+    "Executive Memo": lambda tables: (st.title("Executive Memo"), markdown_doc("executive_memo.md")),
+}
 
 
 def main() -> None:
     tables = load_tables()
-    page = st.sidebar.radio("Navegacao", ["Visao executiva", "Attribution", "Gaps", "Data quality", "Docs"])
-    if page == "Visao executiva":
-        overview(tables)
-    elif page == "Attribution":
-        attribution(tables)
-    elif page == "Gaps":
-        gaps(tables)
-    elif page == "Data quality":
-        data_quality(tables)
-    else:
-        docs()
+    page = st.sidebar.radio("Menu", list(PAGES))
+    PAGES[page](tables)
 
 
 if __name__ == "__main__":

@@ -1,121 +1,121 @@
 lead_id,lead_name,email,company,source,owner_id,created_date,status
-lead_001,Lead 001,lead001@example.com,Company 01,Outbound,usr_001,2026-07-03,Working
-lead_002,Lead 002,lead002@example.com,Company 02,Partner,usr_002,2026-07-02,Qualified
-lead_003,Lead 003,lead003@example.com,Company 03,Paid Search,usr_003,2026-07-01,Disqualified
-lead_004,Lead 004,lead004@example.com,Company 04,Event,usr_006,2026-06-30,New
-lead_005,Lead 005,lead005@example.com,Company 05,Inbound,usr_001,2026-06-29,Working
-lead_006,Lead 006,lead006@example.com,Company 06,Outbound,usr_002,2026-06-28,Qualified
-lead_007,Lead 007,lead007@example.com,Company 07,Partner,usr_003,2026-06-27,Disqualified
-lead_008,Lead 008,lead008@example.com,Company 08,Paid Search,usr_006,2026-06-26,New
-lead_009,Lead 009,lead009@example.com,Company 09,,usr_001,2026-06-25,Working
-lead_010,Lead 010,lead010@example.com,Company 10,Inbound,usr_002,2026-06-24,Qualified
-lead_011,Lead 011,lead011@example.com,Company 11,Outbound,usr_003,2026-06-23,Disqualified
-lead_012,Lead 012,lead012@example.com,Company 12,Partner,usr_006,2026-06-22,New
-lead_013,Lead 013,lead013@example.com,Company 13,Paid Search,usr_001,2026-06-21,Working
-lead_014,Lead 014,lead014@example.com,Company 14,Event,usr_002,2026-06-20,Qualified
-lead_015,Lead 015,lead015@example.com,Company 15,Inbound,usr_003,2026-06-19,Disqualified
-lead_016,Lead 016,lead016@example.com,Company 16,Outbound,usr_006,2026-06-18,New
-lead_017,Lead 017,lead017@example.com,Company 17,Partner,usr_001,2026-06-17,Working
-lead_018,Lead 018,duplicate.alpha@example.com,Company 18,,usr_002,2026-06-16,Qualified
-lead_019,Lead 019,duplicate.alpha@example.com,Company 19,Event,usr_003,2026-06-15,Disqualified
-lead_020,Lead 020,lead020@example.com,Company 20,Inbound,usr_006,2026-06-14,New
-lead_021,Lead 021,lead021@example.com,Company 21,Outbound,usr_001,2026-06-13,Working
-lead_022,Lead 022,lead022@example.com,Company 22,Partner,usr_002,2026-06-12,Qualified
-lead_023,Lead 023,lead023@example.com,Company 23,Paid Search,usr_003,2026-06-11,Disqualified
-lead_024,Lead 024,lead024@example.com,Company 24,Event,usr_006,2026-06-10,New
-lead_025,Lead 025,lead025@example.com,Company 25,Inbound,usr_001,2026-06-09,Working
-lead_026,Lead 026,lead026@example.com,Company 26,Outbound,usr_002,2026-06-08,Qualified
-lead_027,Lead 027,lead027@example.com,Company 27,,usr_003,2026-06-07,Disqualified
-lead_028,Lead 028,lead028@example.com,Company 28,Paid Search,usr_006,2026-06-06,New
-lead_029,Lead 029,lead029@example.com,Company 29,Event,usr_001,2026-06-05,Working
-lead_030,Lead 030,lead030@example.com,Company 30,Inbound,usr_002,2026-06-04,Qualified
-lead_031,Lead 031,lead031@example.com,Company 31,Outbound,usr_003,2026-06-03,Disqualified
-lead_032,Lead 032,lead032@example.com,Company 32,Partner,usr_006,2026-06-02,New
-lead_033,Lead 033,lead033@example.com,Company 33,Paid Search,usr_001,2026-06-01,Working
-lead_034,Lead 034,lead034@example.com,Company 34,Event,usr_002,2026-05-31,Qualified
-lead_035,Lead 035,lead035@example.com,Company 35,Inbound,usr_003,2026-05-30,Disqualified
-lead_036,Lead 036,lead036@example.com,Company 36,,usr_006,2026-05-29,New
-lead_037,Lead 037,lead037@example.com,Company 00,Partner,usr_001,2026-05-28,Working
-lead_038,Lead 038,lead038@example.com,Company 01,Paid Search,usr_002,2026-05-27,Qualified
-lead_039,Lead 039,lead039@example.com,Company 02,Event,usr_003,2026-05-26,Disqualified
-lead_040,Lead 040,lead040@example.com,Company 03,Inbound,usr_006,2026-05-25,New
-lead_041,Lead 041,lead041@example.com,Company 04,Outbound,usr_001,2026-05-24,Working
-lead_042,Lead 042,lead042@example.com,Company 05,Partner,usr_002,2026-05-23,Qualified
-lead_043,Lead 043,lead043@example.com,Company 06,Paid Search,usr_003,2026-05-22,Disqualified
-lead_044,Lead 044,duplicate.beta@example.com,Company 07,Event,usr_006,2026-05-21,New
-lead_045,Lead 045,duplicate.beta@example.com,Company 08,,usr_001,2026-05-20,Working
-lead_046,Lead 046,duplicate.beta@example.com,Company 09,Outbound,usr_002,2026-05-19,Qualified
-lead_047,Lead 047,lead047@example.com,Company 10,Partner,usr_003,2026-05-18,Disqualified
-lead_048,Lead 048,lead048@example.com,Company 11,Paid Search,usr_006,2026-05-17,New
-lead_049,Lead 049,lead049@example.com,Company 12,Event,usr_001,2026-05-16,Working
-lead_050,Lead 050,lead050@example.com,Company 13,Inbound,usr_002,2026-05-15,Qualified
-lead_051,Lead 051,lead051@example.com,Company 14,Outbound,usr_003,2026-05-14,Disqualified
-lead_052,Lead 052,lead052@example.com,Company 15,Partner,usr_006,2026-05-13,New
-lead_053,Lead 053,lead053@example.com,Company 16,Paid Search,usr_001,2026-05-12,Working
-lead_054,Lead 054,lead054@example.com,Company 17,,usr_002,2026-05-11,Qualified
-lead_055,Lead 055,lead055@example.com,Company 18,Inbound,usr_003,2026-05-10,Disqualified
-lead_056,Lead 056,lead056@example.com,Company 19,Outbound,usr_006,2026-05-09,New
-lead_057,Lead 057,lead057@example.com,Company 20,Partner,usr_001,2026-05-08,Working
-lead_058,Lead 058,lead058@example.com,Company 21,Paid Search,usr_002,2026-05-07,Qualified
-lead_059,Lead 059,lead059@example.com,Company 22,Event,usr_003,2026-05-06,Disqualified
-lead_060,Lead 060,lead060@example.com,Company 23,Inbound,usr_006,2026-05-05,New
-lead_061,Lead 061,lead061@example.com,Company 24,Outbound,usr_001,2026-05-04,Working
-lead_062,Lead 062,lead062@example.com,Company 25,Partner,usr_002,2026-05-03,Qualified
-lead_063,Lead 063,lead063@example.com,Company 26,,usr_003,2026-05-02,Disqualified
-lead_064,Lead 064,lead064@example.com,Company 27,Event,usr_006,2026-05-01,New
-lead_065,Lead 065,lead065@example.com,Company 28,Inbound,usr_001,2026-04-30,Working
-lead_066,Lead 066,lead066@example.com,Company 29,Outbound,usr_002,2026-04-29,Qualified
-lead_067,Lead 067,lead067@example.com,Company 30,Partner,usr_003,2026-04-28,Disqualified
-lead_068,Lead 068,lead068@example.com,Company 31,Paid Search,usr_006,2026-04-27,New
-lead_069,Lead 069,lead069@example.com,Company 32,Event,usr_001,2026-04-26,Working
-lead_070,Lead 070,lead070@example.com,Company 33,Inbound,usr_002,2026-04-25,Qualified
-lead_071,Lead 071,lead071@example.com,Company 34,Outbound,usr_003,2026-04-24,Disqualified
-lead_072,Lead 072,lead072@example.com,Company 35,,usr_006,2026-04-23,New
-lead_073,Lead 073,lead073@example.com,Company 36,Paid Search,usr_001,2026-04-22,Working
-lead_074,Lead 074,lead074@example.com,Company 00,Event,usr_002,2026-04-21,Qualified
-lead_075,Lead 075,lead075@example.com,Company 01,Inbound,usr_003,2026-04-20,Disqualified
-lead_076,Lead 076,lead076@example.com,Company 02,Outbound,usr_006,2026-04-19,New
-lead_077,Lead 077,lead077@example.com,Company 03,Partner,usr_001,2026-04-18,Working
-lead_078,Lead 078,lead078@example.com,Company 04,Paid Search,usr_002,2026-04-17,Qualified
-lead_079,Lead 079,lead079@example.com,Company 05,Event,usr_003,2026-04-16,Disqualified
-lead_080,Lead 080,lead080@example.com,Company 06,Inbound,usr_006,2026-04-15,New
-lead_081,Lead 081,lead081@example.com,Company 07,,usr_001,2026-04-14,Working
-lead_082,Lead 082,lead082@example.com,Company 08,Partner,usr_002,2026-04-13,Qualified
-lead_083,Lead 083,lead083@example.com,Company 09,Paid Search,usr_003,2026-04-12,Disqualified
-lead_084,Lead 084,lead084@example.com,Company 10,Event,usr_006,2026-04-11,New
-lead_085,Lead 085,lead085@example.com,Company 11,Inbound,usr_001,2026-04-10,Working
-lead_086,Lead 086,lead086@example.com,Company 12,Outbound,usr_002,2026-04-09,Qualified
-lead_087,Lead 087,lead087@example.com,Company 13,Partner,usr_003,2026-04-08,Disqualified
-lead_088,Lead 088,lead088@example.com,Company 14,Paid Search,usr_006,2026-04-07,New
-lead_089,Lead 089,lead089@example.com,Company 15,Event,usr_001,2026-04-06,Working
-lead_090,Lead 090,lead090@example.com,Company 16,,usr_002,2026-07-04,Qualified
-lead_091,Lead 091,lead091@example.com,Company 17,Outbound,usr_003,2026-07-03,Disqualified
-lead_092,Lead 092,lead092@example.com,Company 18,Partner,usr_006,2026-07-02,New
-lead_093,Lead 093,lead093@example.com,Company 19,Paid Search,usr_001,2026-07-01,Working
-lead_094,Lead 094,lead094@example.com,Company 20,Event,usr_002,2026-06-30,Qualified
-lead_095,Lead 095,lead095@example.com,Company 21,Inbound,usr_003,2026-06-29,Disqualified
-lead_096,Lead 096,lead096@example.com,Company 22,Outbound,usr_006,2026-06-28,New
-lead_097,Lead 097,lead097@example.com,Company 23,Partner,usr_001,2026-06-27,Working
-lead_098,Lead 098,lead098@example.com,Company 24,Paid Search,usr_002,2026-06-26,Qualified
-lead_099,Lead 099,lead099@example.com,Company 25,,usr_003,2026-06-25,Disqualified
-lead_100,Lead 100,lead100@example.com,Company 26,Inbound,usr_006,2026-06-24,New
-lead_101,Lead 101,lead101@example.com,Company 27,Outbound,usr_001,2026-06-23,Working
-lead_102,Lead 102,lead102@example.com,Company 28,Partner,usr_002,2026-06-22,Qualified
-lead_103,Lead 103,lead103@example.com,Company 29,Paid Search,usr_003,2026-06-21,Disqualified
-lead_104,Lead 104,lead104@example.com,Company 30,Event,usr_006,2026-06-20,New
-lead_105,Lead 105,lead105@example.com,Company 31,Inbound,usr_001,2026-06-19,Working
-lead_106,Lead 106,lead106@example.com,Company 32,Outbound,usr_002,2026-06-18,Qualified
-lead_107,Lead 107,lead107@example.com,Company 33,Partner,usr_003,2026-06-17,Disqualified
-lead_108,Lead 108,lead108@example.com,Company 34,,usr_006,2026-06-16,New
-lead_109,Lead 109,lead109@example.com,Company 35,Event,usr_001,2026-06-15,Working
-lead_110,Lead 110,lead110@example.com,Company 36,Inbound,usr_002,2026-06-14,Qualified
-lead_111,Lead 111,lead111@example.com,Company 00,Outbound,usr_003,2026-06-13,Disqualified
-lead_112,Lead 112,lead112@example.com,Company 01,Partner,usr_006,2026-06-12,New
-lead_113,Lead 113,lead113@example.com,Company 02,Paid Search,usr_001,2026-06-11,Working
-lead_114,Lead 114,lead114@example.com,Company 03,Event,usr_002,2026-06-10,Qualified
-lead_115,Lead 115,lead115@example.com,Company 04,Inbound,usr_003,2026-06-09,Disqualified
-lead_116,Lead 116,lead116@example.com,Company 05,Outbound,usr_006,2026-06-08,New
-lead_117,Lead 117,lead117@example.com,Company 06,,usr_001,2026-06-07,Working
-lead_118,Lead 118,lead118@example.com,Company 07,Paid Search,usr_002,2026-06-06,Qualified
-lead_119,Lead 119,lead119@example.com,Company 08,Event,usr_003,2026-06-05,Disqualified
-lead_120,Lead 120,lead120@example.com,Company 09,Inbound,usr_006,2026-06-04,New
+lead_001,Lead 001,lead001@example.com,Company 01,Inbound,usr_003,2026-05-06,Working
+lead_002,Lead 002,lead002@example.com,Company 02,Partner,usr_003,2026-06-26,Qualified
+lead_003,Lead 003,lead003@example.com,Company 03,Outbound,usr_006,2026-05-18,Disqualified
+lead_004,Lead 004,lead004@example.com,Company 04,Paid Search,usr_003,2026-05-01,Disqualified
+lead_005,Lead 005,lead005@example.com,Company 05,Partner,usr_006,2026-04-20,Working
+lead_006,Lead 006,lead006@example.com,Company 06,Partner,usr_001,2026-06-17,Disqualified
+lead_007,Lead 007,lead007@example.com,Company 07,Paid Search,usr_002,2026-05-29,Disqualified
+lead_008,Lead 008,lead008@example.com,Company 08,Partner,usr_001,2026-05-24,New
+lead_009,Lead 009,lead009@example.com,Company 09,,usr_006,2026-05-15,Disqualified
+lead_010,Lead 010,lead010@example.com,Company 10,Inbound,usr_003,2026-04-21,Working
+lead_011,Lead 011,lead011@example.com,Company 11,Paid Search,usr_006,2026-04-27,Qualified
+lead_012,Lead 012,lead012@example.com,Company 12,Outbound,usr_006,2026-04-08,Working
+lead_013,Lead 013,lead013@example.com,Company 13,Event,usr_002,2026-04-25,Disqualified
+lead_014,Lead 014,lead014@example.com,Company 14,Inbound,usr_001,2026-05-23,Working
+lead_015,Lead 015,lead015@example.com,Company 15,Inbound,usr_002,2026-06-20,Qualified
+lead_016,Lead 016,lead016@example.com,Company 16,Paid Search,usr_003,2026-04-28,Working
+lead_017,Lead 017,lead017@example.com,Company 17,Event,usr_001,2026-06-05,Disqualified
+lead_018,Lead 018,duplicate@example.com,Company 18,,usr_001,2026-06-27,Working
+lead_019,Lead 019,duplicate@example.com,Company 19,Paid Search,usr_006,2026-05-23,New
+lead_020,Lead 020,duplicate@example.com,Company 20,Paid Search,usr_001,2026-06-04,New
+lead_021,Lead 021,lead021@example.com,Company 21,Partner,usr_002,2026-04-11,Working
+lead_022,Lead 022,lead022@example.com,Company 22,Inbound,usr_003,2026-05-08,Qualified
+lead_023,Lead 023,lead023@example.com,Company 23,Inbound,usr_001,2026-04-26,Disqualified
+lead_024,Lead 024,lead024@example.com,Company 24,Partner,usr_003,2026-04-20,Working
+lead_025,Lead 025,lead025@example.com,Company 25,Event,usr_001,2026-06-12,Qualified
+lead_026,Lead 026,lead026@example.com,Company 26,Paid Search,usr_006,2026-04-20,New
+lead_027,Lead 027,lead027@example.com,Company 27,,usr_003,2026-07-03,Disqualified
+lead_028,Lead 028,lead028@example.com,Company 28,Paid Search,usr_003,2026-05-05,Working
+lead_029,Lead 029,lead029@example.com,Company 29,Paid Search,usr_001,2026-04-25,Qualified
+lead_030,Lead 030,lead030@example.com,Company 30,Partner,usr_002,2026-05-14,New
+lead_031,Lead 031,lead031@example.com,Company 31,Inbound,usr_006,2026-06-23,Working
+lead_032,Lead 032,lead032@example.com,Company 32,Paid Search,usr_002,2026-05-23,Disqualified
+lead_033,Lead 033,lead033@example.com,Company 33,Partner,usr_006,2026-04-26,Qualified
+lead_034,Lead 034,lead034@example.com,Company 34,Paid Search,usr_002,2026-05-15,New
+lead_035,Lead 035,lead035@example.com,Company 35,Partner,usr_003,2026-06-06,Qualified
+lead_036,Lead 036,lead036@example.com,Company 36,,usr_006,2026-06-03,Working
+lead_037,Lead 037,lead037@example.com,Company 00,Event,usr_006,2026-06-09,Working
+lead_038,Lead 038,lead038@example.com,Company 01,Event,usr_003,2026-06-30,New
+lead_039,Lead 039,lead039@example.com,Company 02,Event,usr_006,2026-04-18,Working
+lead_040,Lead 040,lead040@example.com,Company 03,Event,usr_001,2026-05-26,Qualified
+lead_041,Lead 041,lead041@example.com,Company 04,Inbound,usr_002,2026-05-20,Disqualified
+lead_042,Lead 042,lead042@example.com,Company 05,Event,usr_002,2026-05-28,Working
+lead_043,Lead 043,lead043@example.com,Company 06,Partner,usr_003,2026-06-05,New
+lead_044,Lead 044,lead044@example.com,Company 07,Outbound,usr_006,2026-06-24,New
+lead_045,Lead 045,lead045@example.com,Company 08,,usr_003,2026-04-30,Qualified
+lead_046,Lead 046,lead046@example.com,Company 09,Partner,usr_002,2026-06-19,Disqualified
+lead_047,Lead 047,lead047@example.com,Company 10,Partner,usr_003,2026-06-20,Working
+lead_048,Lead 048,lead048@example.com,Company 11,Paid Search,usr_001,2026-05-25,New
+lead_049,Lead 049,lead049@example.com,Company 12,Outbound,usr_006,2026-06-07,Qualified
+lead_050,Lead 050,lead050@example.com,Company 13,Paid Search,usr_002,2026-06-01,Disqualified
+lead_051,Lead 051,lead051@example.com,Company 14,Inbound,usr_001,2026-06-23,Working
+lead_052,Lead 052,lead052@example.com,Company 15,Event,usr_001,2026-04-14,Working
+lead_053,Lead 053,lead053@example.com,Company 16,Paid Search,usr_001,2026-06-10,Disqualified
+lead_054,Lead 054,lead054@example.com,Company 17,,usr_003,2026-06-10,Disqualified
+lead_055,Lead 055,lead055@example.com,Company 18,Outbound,usr_002,2026-04-24,Working
+lead_056,Lead 056,lead056@example.com,Company 19,Paid Search,usr_001,2026-06-26,New
+lead_057,Lead 057,lead057@example.com,Company 20,Partner,usr_003,2026-06-22,Working
+lead_058,Lead 058,lead058@example.com,Company 21,Paid Search,usr_006,2026-04-30,Working
+lead_059,Lead 059,lead059@example.com,Company 22,Event,usr_002,2026-05-16,New
+lead_060,Lead 060,lead060@example.com,Company 23,Partner,usr_003,2026-07-02,Disqualified
+lead_061,Lead 061,lead061@example.com,Company 24,Partner,usr_002,2026-05-05,Working
+lead_062,Lead 062,lead062@example.com,Company 25,Outbound,usr_002,2026-06-21,Qualified
+lead_063,Lead 063,lead063@example.com,Company 26,,usr_006,2026-05-07,Qualified
+lead_064,Lead 064,lead064@example.com,Company 27,Inbound,usr_003,2026-05-27,Disqualified
+lead_065,Lead 065,lead065@example.com,Company 28,Inbound,usr_006,2026-05-21,New
+lead_066,Lead 066,lead066@example.com,Company 29,Outbound,usr_002,2026-06-21,Qualified
+lead_067,Lead 067,lead067@example.com,Company 30,Inbound,usr_006,2026-05-12,Disqualified
+lead_068,Lead 068,lead068@example.com,Company 31,Inbound,usr_001,2026-04-12,Disqualified
+lead_069,Lead 069,lead069@example.com,Company 32,Partner,usr_001,2026-06-03,Qualified
+lead_070,Lead 070,lead070@example.com,Company 33,Partner,usr_001,2026-07-01,New
+lead_071,Lead 071,lead071@example.com,Company 34,Event,usr_001,2026-05-22,Working
+lead_072,Lead 072,lead072@example.com,Company 35,,usr_003,2026-06-28,New
+lead_073,Lead 073,lead073@example.com,Company 36,Outbound,usr_001,2026-05-05,Working
+lead_074,Lead 074,lead074@example.com,Company 00,Partner,usr_003,2026-06-19,Qualified
+lead_075,Lead 075,lead075@example.com,Company 01,Partner,usr_001,2026-04-23,Working
+lead_076,Lead 076,lead076@example.com,Company 02,Event,usr_001,2026-05-16,Qualified
+lead_077,Lead 077,lead077@example.com,Company 03,Event,usr_001,2026-06-08,New
+lead_078,Lead 078,lead078@example.com,Company 04,Outbound,usr_003,2026-07-03,Disqualified
+lead_079,Lead 079,lead079@example.com,Company 05,Partner,usr_006,2026-06-07,Qualified
+lead_080,Lead 080,lead080@example.com,Company 06,Outbound,usr_006,2026-05-05,Qualified
+lead_081,Lead 081,lead081@example.com,Company 07,,usr_006,2026-06-08,New
+lead_082,Lead 082,lead082@example.com,Company 08,Paid Search,usr_002,2026-04-30,Disqualified
+lead_083,Lead 083,lead083@example.com,Company 09,Paid Search,usr_001,2026-06-24,Qualified
+lead_084,Lead 084,lead084@example.com,Company 10,Event,usr_003,2026-06-13,New
+lead_085,Lead 085,lead085@example.com,Company 11,Inbound,usr_006,2026-05-15,Qualified
+lead_086,Lead 086,lead086@example.com,Company 12,Outbound,usr_001,2026-04-21,Working
+lead_087,Lead 087,lead087@example.com,Company 13,Event,usr_003,2026-06-05,New
+lead_088,Lead 088,lead088@example.com,Company 14,Event,usr_002,2026-06-08,Qualified
+lead_089,Lead 089,lead089@example.com,Company 15,Partner,usr_003,2026-06-11,Disqualified
+lead_090,Lead 090,lead090@example.com,Company 16,,usr_003,2026-06-17,New
+lead_091,Lead 091,lead091@example.com,Company 17,Partner,usr_006,2026-06-07,Working
+lead_092,Lead 092,lead092@example.com,Company 18,Event,usr_003,2026-06-20,Disqualified
+lead_093,Lead 093,lead093@example.com,Company 19,Inbound,usr_002,2026-04-19,Disqualified
+lead_094,Lead 094,lead094@example.com,Company 20,Outbound,usr_003,2026-06-23,Qualified
+lead_095,Lead 095,lead095@example.com,Company 21,Partner,usr_001,2026-07-02,Disqualified
+lead_096,Lead 096,lead096@example.com,Company 22,Outbound,usr_002,2026-05-28,Working
+lead_097,Lead 097,lead097@example.com,Company 23,Event,usr_006,2026-04-29,Qualified
+lead_098,Lead 098,lead098@example.com,Company 24,Outbound,usr_001,2026-07-03,Disqualified
+lead_099,Lead 099,lead099@example.com,Company 25,,usr_003,2026-06-12,New
+lead_100,Lead 100,lead100@example.com,Company 26,Inbound,usr_006,2026-04-21,Disqualified
+lead_101,Lead 101,lead101@example.com,Company 27,Inbound,usr_002,2026-06-18,Working
+lead_102,Lead 102,lead102@example.com,Company 28,Partner,usr_002,2026-04-17,New
+lead_103,Lead 103,lead103@example.com,Company 29,Inbound,usr_001,2026-06-06,Disqualified
+lead_104,Lead 104,lead104@example.com,Company 30,Paid Search,usr_001,2026-04-08,Working
+lead_105,Lead 105,lead105@example.com,Company 31,Partner,usr_001,2026-06-21,Disqualified
+lead_106,Lead 106,lead106@example.com,Company 32,Inbound,usr_006,2026-06-13,Working
+lead_107,Lead 107,lead107@example.com,Company 33,Inbound,usr_006,2026-05-04,Disqualified
+lead_108,Lead 108,lead108@example.com,Company 34,,usr_006,2026-06-07,Qualified
+lead_109,Lead 109,lead109@example.com,Company 35,Event,usr_002,2026-04-26,Qualified
+lead_110,Lead 110,lead110@example.com,Company 36,Partner,usr_006,2026-04-18,Disqualified
+lead_111,Lead 111,lead111@example.com,Company 00,Inbound,usr_002,2026-06-26,Qualified
+lead_112,Lead 112,lead112@example.com,Company 01,Event,usr_006,2026-05-26,New
+lead_113,Lead 113,lead113@example.com,Company 02,Partner,usr_003,2026-06-26,Working
+lead_114,Lead 114,lead114@example.com,Company 03,Event,usr_001,2026-06-22,Working
+lead_115,Lead 115,lead115@example.com,Company 04,Partner,usr_002,2026-06-06,Disqualified
+lead_116,Lead 116,lead116@example.com,Company 05,Partner,usr_001,2026-04-09,Disqualified
+lead_117,Lead 117,lead117@example.com,Company 06,,usr_001,2026-07-01,Qualified
+lead_118,Lead 118,lead118@example.com,Company 07,Partner,usr_006,2026-05-08,Disqualified
+lead_119,Lead 119,lead119@example.com,Company 08,Inbound,usr_002,2026-06-21,Qualified
+lead_120,Lead 120,lead120@example.com,Company 09,Partner,usr_006,2026-04-09,New

@@ -8,34 +8,34 @@ ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = ROOT / "data" / "processed"
 
 
-def test_main_revenue_attribution_files_exist():
+def test_main_crm_governance_files_exist():
     for name in [
-        "channels",
-        "campaigns",
-        "marketing_spend",
         "leads",
+        "accounts",
+        "contacts",
         "opportunities",
-        "customers",
-        "revenue",
-        "touchpoints",
-        "attribution_models",
-        "cohorts",
+        "users",
+        "activities",
+        "forecast_categories",
+        "stages",
+        "crm_audit_log",
+        "data_quality_checks",
+        "remediation_tasks",
     ]:
         assert (PROCESSED / f"{name}.csv").exists()
 
 
 def test_required_columns_and_primary_ids_not_null():
     required = {
-        "channels": ["channel_id", "channel_name"],
-        "campaigns": ["campaign_id", "channel_id"],
-        "leads": ["lead_id", "channel_id", "campaign_id"],
-        "opportunities": ["opportunity_id", "lead_id", "channel_id", "pipeline_value"],
-        "customers": ["customer_id", "lead_id", "opportunity_id", "acquisition_channel_id", "arr"],
-        "revenue": ["revenue_id", "customer_id", "new_arr"],
+        "leads": ["lead_id", "source"],
+        "accounts": ["account_id", "owner_id"],
+        "contacts": ["contact_id", "account_id"],
+        "opportunities": ["opportunity_id", "account_id", "owner_id", "amount", "close_date", "stage", "forecast_category", "probability"],
+        "users": ["user_id"],
+        "activities": ["activity_id", "related_object_id"],
     }
     for table, columns in required.items():
         df = pd.read_csv(PROCESSED / f"{table}.csv")
         for column in columns:
             assert column in df.columns
-            if column.endswith("_id"):
-                assert df[column].notna().all()
+        assert df[columns[0]].notna().all()

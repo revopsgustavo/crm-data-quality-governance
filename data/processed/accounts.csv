@@ -1,46 +1,46 @@
 account_id,account_name,domain,segment,owner_id,industry,created_date
 acct_001,Account 01,account01.com,Mid Market,usr_002,Healthtech,2026-07-02
 acct_002,Account 02,account02.com,Enterprise,usr_003,Edtech,2026-06-30
-acct_003,Account 03,account03.com,SMB,usr_007,Retail,2026-06-28
-acct_004,Account 04,account04.com,Mid Market,usr_001,Logistics,2026-06-26
-acct_005,Account 05,account05.com,Enterprise,usr_002,Fintech,2026-06-24
-acct_006,Account 06,account06.com,SMB,usr_003,Healthtech,2026-06-22
-acct_007,Account 07,account07.com,Mid Market,usr_007,Edtech,2026-06-20
+acct_003,Account 03,account03.com,SMB,usr_001,Retail,2026-06-28
+acct_004,Account 04,account04.com,Mid Market,usr_002,Logistics,2026-06-26
+acct_005,Account 05,account05.com,Enterprise,usr_003,Fintech,2026-06-24
+acct_006,Account 06,account06.com,SMB,usr_001,Healthtech,2026-06-22
+acct_007,Account 07,account07.com,Mid Market,usr_002,Edtech,2026-06-20
 acct_008,Account 08,account08.com,Enterprise,,Retail,2026-06-18
-acct_009,Account 09,account09.com,SMB,usr_002,Logistics,2026-06-16
-acct_010,Account 10,account10.com,Mid Market,usr_003,Fintech,2026-06-14
-acct_011,Account 11,account11.com,Enterprise,usr_007,Healthtech,2026-06-12
+acct_009,Account 09,account09.com,SMB,usr_001,Logistics,2026-06-16
+acct_010,Account 10,account10.com,Mid Market,usr_002,Fintech,2026-06-14
+acct_011,Account 11,account11.com,Enterprise,usr_003,Healthtech,2026-06-12
 acct_012,Atlas Cloud,atlascloud.com,SMB,usr_001,Edtech,2026-06-10
 acct_013,Atlas Cloud,atlascloud.com,Mid Market,usr_002,Retail,2026-06-08
 acct_014,Account 14,account14.com,Enterprise,usr_003,Logistics,2026-06-06
-acct_015,Account 15,account15.com,SMB,usr_007,Fintech,2026-06-04
-acct_016,Account 16,account16.com,Mid Market,usr_001,Healthtech,2026-06-02
-acct_017,Account 17,account17.com,Enterprise,usr_002,Edtech,2026-05-31
-acct_018,Account 18,account18.com,SMB,usr_003,Retail,2026-05-29
-acct_019,Account 19,account19.com,Mid Market,usr_007,Logistics,2026-05-27
-acct_020,Account 20,account20.com,Enterprise,usr_001,Fintech,2026-05-25
+acct_015,Account 15,account15.com,SMB,usr_001,Fintech,2026-06-04
+acct_016,Account 16,account16.com,Mid Market,usr_002,Healthtech,2026-06-02
+acct_017,Account 17,account17.com,Enterprise,usr_003,Edtech,2026-05-31
+acct_018,Account 18,account18.com,SMB,usr_001,Retail,2026-05-29
+acct_019,Account 19,account19.com,Mid Market,usr_002,Logistics,2026-05-27
+acct_020,Account 20,account20.com,Enterprise,usr_003,Fintech,2026-05-25
 acct_021,Account 21,account21.com,SMB,,Healthtech,2026-05-23
-acct_022,Account 22,account22.com,Mid Market,usr_003,Edtech,2026-05-21
-acct_023,Account 23,account23.com,Enterprise,usr_007,Retail,2026-05-19
+acct_022,Account 22,account22.com,Mid Market,usr_002,Edtech,2026-05-21
+acct_023,Account 23,account23.com,Enterprise,usr_003,Retail,2026-05-19
 acct_024,Account 24,account24.com,SMB,usr_001,Logistics,2026-05-17
 acct_025,Account 25,account25.com,Mid Market,usr_002,Fintech,2026-05-15
 acct_026,Account 26,account26.com,Enterprise,usr_003,Healthtech,2026-05-13
-acct_027,Nexa SaaS,nexasaas.com,SMB,usr_007,Edtech,2026-05-11
-acct_028,Nexa SaaS,nexasaas.com,Mid Market,usr_001,Retail,2026-05-09
-acct_029,Account 29,account29.com,Enterprise,usr_002,Logistics,2026-05-07
-acct_030,Account 30,account30.com,SMB,usr_003,Fintech,2026-05-05
-acct_031,Account 31,account31.com,Mid Market,usr_007,Healthtech,2026-05-03
-acct_032,Account 32,account32.com,Enterprise,usr_001,Edtech,2026-05-01
-acct_033,Account 33,account33.com,SMB,usr_002,Retail,2026-04-29
-acct_034,Account 34,account34.com,Mid Market,usr_003,Logistics,2026-04-27
+acct_027,Nexa SaaS,nexasaas.com,SMB,usr_001,Edtech,2026-05-11
+acct_028,Nexa SaaS,nexasaas.com,Mid Market,usr_002,Retail,2026-05-09
+acct_029,Account 29,account29.com,Enterprise,usr_003,Logistics,2026-05-07
+acct_030,Account 30,account30.com,SMB,usr_001,Fintech,2026-05-05
+acct_031,Account 31,account31.com,Mid Market,usr_002,Healthtech,2026-05-03
+acct_032,Account 32,account32.com,Enterprise,usr_003,Edtech,2026-05-01
+acct_033,Account 33,account33.com,SMB,usr_001,Retail,2026-04-29
+acct_034,Account 34,account34.com,Mid Market,usr_002,Logistics,2026-04-27
 acct_035,Account 35,account35.com,Enterprise,,Fintech,2026-04-25
 acct_036,Account 36,account36.com,SMB,usr_001,Healthtech,2026-04-23
 acct_037,Account 37,account37.com,Mid Market,usr_002,Edtech,2026-04-21
 acct_038,Account 38,account38.com,Enterprise,usr_003,Retail,2026-04-19
-acct_039,Account 39,account39.com,SMB,usr_007,Logistics,2026-04-17
-acct_040,Account 40,account40.com,Mid Market,usr_001,Fintech,2026-04-15
-acct_041,Account 41,account41.com,Enterprise,usr_002,Healthtech,2026-04-13
+acct_039,Account 39,account39.com,SMB,usr_001,Logistics,2026-04-17
+acct_040,Account 40,account40.com,Mid Market,usr_002,Fintech,2026-04-15
+acct_041,Account 41,account41.com,Enterprise,usr_003,Healthtech,2026-04-13
 acct_042,Account 42,account42.com,SMB,,Edtech,2026-04-11
-acct_043,Account 43,account43.com,Mid Market,usr_007,Retail,2026-04-09
-acct_044,Account 44,account44.com,Enterprise,usr_001,Logistics,2026-04-07
-acct_045,Account 45,account45.com,SMB,usr_002,Fintech,2026-07-04
+acct_043,Account 43,account43.com,Mid Market,usr_002,Retail,2026-04-09
+acct_044,Account 44,account44.com,Enterprise,usr_003,Logistics,2026-04-07
+acct_045,Account 45,account45.com,SMB,usr_001,Fintech,2026-07-04

@@ -1,2 +1,4 @@
 check_id,object,field,check_type,severity,status
 chk_001,leads,source,required_field,critical,active
+chk_002,accounts,owner_id,required_field,critical,active
+chk_003,opportunities,close_date,forecast_governance,critical,active

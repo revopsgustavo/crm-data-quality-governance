@@ -1,7 +1,7 @@
 # CRM Data Quality and Revenue Governance
 
 ## Executive Summary
-Este projeto analisa uma operação SaaS B2B sintética para demonstrar como RevOps e Sales Ops podem transformar CRM Data Quality em Revenue Governance. Os dados sugerem score geral de qualidade em 64.0/100, Forecast Reliability Score em 68.8/100, Pipeline Hygiene Score em 46.1/100 e R$ 1.543.800,00 em pipeline associado a problemas de qualidade.
+Este projeto analisa uma operação SaaS B2B sintética para demonstrar como RevOps e Sales Ops podem transformar CRM Data Quality em Revenue Governance. Os dados sugerem score geral de qualidade em 65.5/100, Forecast Reliability Score em 76.0/100, Pipeline Hygiene Score em 42.8/100 e R$ 2.414.735,00 em pipeline associado a problemas de qualidade.
 
 O risco principal não está apenas em campos incompletos, mas no impacto desses problemas sobre forecast, pipeline hygiene, ownership e confiabilidade da tomada de decisão. CRM Data Quality deve ser tratada como governança de receita, não como checklist técnico.
 
@@ -36,23 +36,23 @@ tests/            testes automatizados
 Entidades: leads, accounts, contacts, opportunities, users, activities, forecast_categories, stages, crm_audit_log, data_quality_checks e remediation_tasks. Não há dados reais, APIs externas ou ML.
 
 ## Principais Métricas
-- CRM Data Quality Score: 64.0/100.
-- Forecast Reliability Score: 68.8/100.
-- Pipeline Hygiene Score: 46.1/100.
+- CRM Data Quality Score: 65.5/100.
+- Forecast Reliability Score: 76.0/100.
+- Pipeline Hygiene Score: 42.8/100.
 - Leads sem source: 13.
-- Duplicidade de leads: 5.
+- Duplicidade de leads: 3.
 - Duplicidade de contas: 4.
 - Contatos sem conta: 4.
 - Contas sem owner: 4.
 - Oportunidades sem owner: 4.
 - Oportunidades sem close_date: 5.
 - Oportunidades sem next_step: 5.
-- Oportunidades paradas: 34.
+- Oportunidades paradas: 37.
 - Closed Won sem amount: 2.
-- Closed Lost sem loss_reason: 3.
-- Forecast category inconsistente: 3.
+- Closed Lost sem loss_reason: 9.
+- Forecast category inconsistente: 0.
 - Stage/probability incompatível: 14.
-- Revenue at risk: R$ 1.543.800,00.
+- Revenue at risk: R$ 2.414.735,00.
 
 ## Principais Gaps Encontrados
 Os gaps reais são gerados em `data/processed/consultant_gap_log.csv` e priorizados por severidade. Eles conectam evidência observada, hipótese provável, evidência ausente, pergunta de validação, ação recomendada, responsável e métrica de acompanhamento.
